@@ -5,6 +5,8 @@
 # Creates binary images from input files controlled by a description
 #
 
+from __future__ import print_function
+
 from collections import OrderedDict
 import os
 import re
