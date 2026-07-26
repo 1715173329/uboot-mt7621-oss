@@ -33,14 +33,14 @@ class Entry_blob(Entry):
         return True
 
     def ReadBlobContents(self):
-        with open(self._pathname) as fd:
-            # We assume the data is small enough to fit into memory. If this
-            # is used for large filesystem image that might not be true.
-            # In that case, Image.BuildImage() could be adjusted to use a
-            # new Entry method which can read in chunks. Then we could copy
-            # the data in chunks and avoid reading it all at once. For now
-            # this seems like an unnecessary complication.
-            self.SetContents(fd.read())
+        # We assume the data is small enough to fit into memory. If this
+        # is used for large filesystem image that might not be true.
+        # In that case, Image.BuildImage() could be adjusted to use a
+        # new Entry method which can read in chunks. Then we could copy
+        # the data in chunks and avoid reading it all at once. For now
+        # this seems like an unnecessary complication.
+        data = tools.ReadFile(self._pathname)
+        self.SetContents(data)
         return True
 
     def GetDefaultFilename(self):

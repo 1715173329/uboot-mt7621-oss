@@ -150,9 +150,7 @@ def Binman(options, args):
             # in binman.
             dtb_fname = fdt_util.EnsureCompiled(dtb_fname)
             fname = tools.GetOutputFilename('u-boot-out.dtb')
-            with open(dtb_fname) as infd:
-                with open(fname, 'wb') as outfd:
-                    outfd.write(infd.read())
+            tools.WriteFile(fname, tools.ReadFile(dtb_fname))
             dtb = fdt.FdtScan(fname)
 
             # Note the file so that GetFdt() can find it
